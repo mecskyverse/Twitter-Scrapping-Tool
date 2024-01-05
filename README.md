@@ -22,13 +22,13 @@ Before you begin, ensure you have the following installed:
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/mecskyverse/TwitterScrap.git
-cd TwitterScrap/Method-1
+git clone https://github.com/mecskyverse/Twitter-Scrapping-Tool.git
+cd Twitter-Scrapping-Tool/Method-1
 pip install -r requirements.txt
 ```
 after installing dependencies of Method-1 we have to install few dependencies of Method-2 as well
 ```
-cd TwitterScrap/Method-2
+cd Twitter-Scrapping-Tool/Method-2
 pip install -r requirements.txt
 ```
 
