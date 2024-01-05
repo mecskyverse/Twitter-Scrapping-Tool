@@ -1,24 +1,14 @@
-# Open Source Python Project Guide
+# Twitter Scrapping Python
 
-This guide provides instructions on setting up and contributing to an open source Python project. The example project used in this guide is named "AwesomeProject."
+This guide provides instructions on setting up this project.
 
 ## Table of Contents
 
 1. [Prerequisites](#prerequisites)
 2. [Getting Started](#getting-started)
     - [Clone the Repository](#clone-the-repository)
-    - [Virtual Environment](#virtual-environment)
-    - [Install Dependencies](#install-dependencies)
 3. [Project Structure](#project-structure)
-4. [Contributing](#contributing)
-    - [Fork the Repository](#fork-the-repository)
-    - [Create a Branch](#create-a-branch)
-    - [Make Changes](#make-changes)
-    - [Submit a Pull Request](#submit-a-pull-request)
-5. [Testing](#testing)
-6. [Documentation](#documentation)
-7. [Versioning](#versioning)
-8. [License](#license)
+
 
 ## Prerequisites
 
@@ -32,5 +22,38 @@ Before you begin, ensure you have the following installed:
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/AwesomeProject.git
-cd AwesomeProject
+git clone https://github.com/mecskyverse/TwitterScrap.git
+cd TwitterScrap/Method-1
+pip install -r requirements.txt
+```
+after installing dependencies of Method-1 we have to install few dependencies of Method-2 as well
+```
+cd TwitterScrap/Method-2
+pip install -r requirements.txt
+```
+
+## Project Structure
+TwitterScrap/
+│
+├── Method-1/
+│   ├── Excel/
+|   ├── Files/
+│   ├── module1.py
+│   ├── module2.py
+│   └── 
+│
+├── Method-2/
+│   ├── __init__.py
+│   ├── test_module1.py
+│   ├── test_module2.py
+│   └── ...
+│
+├── docs/
+│   ├── conf.py
+│   ├── index.rst
+│   └── ...
+│
+├── .gitignore
+├── requirements.txt
+├── setup.py
+└── ...
