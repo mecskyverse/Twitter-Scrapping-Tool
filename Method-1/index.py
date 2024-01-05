@@ -8,32 +8,36 @@ from excel import Excel
 from time import sleep
 
 
-client = OpenAI(api_key="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")
 
 def main():
     log.warning("Loading configurations...")
+    client = OpenAI(api_key=conf["apiKey"])
     driver = open_driver(conf["headless"], conf["userAgent"])
     driver.get("https://twitter.com/")
     set_token(driver, conf["token"])
     driver.get("https://twitter.com/")
 
     log.warning("Starting...")
-    data = profile_search(driver)
-    print(data)
-    print('Data Scrapping Done Offensive check.....')
-    offensiveCheckData = check_offensiveness(data)
-    print('results ',offensiveCheckData)
-    
-    log.warning("Saving...")
-    Excel(offensiveCheckData, conf["output_form"])
-
-
-def profile_search(
-        driver: webdriver.Chrome
-):
     username = input("Enter username ")
     num = int(input("Enter the required number of tweets or -1 for all tweets: "))
     url = f'https://twitter.com/{username}/with_replies'
+    data = profile_search(driver, username, num, url)
+    print(data)
+    print('Data Scrapping Done Offensive check.....')
+    offensiveCheckData = check_offensiveness(data, client)
+    print('results ',offensiveCheckData)
+    
+    log.warning("Saving...")
+    Excel(username, offensiveCheckData, conf["output_form"])
+
+
+def profile_search(
+        driver: webdriver.Chrome,
+        username,
+        num,
+        url
+):
+    
     driver.get(url)
 
     log.warning("Fetching...")
@@ -67,15 +71,14 @@ def profile_search(
             break        
     return results
 
-def check_offensiveness(data):
+def check_offensiveness(data, client):
     for item in data:
         prompt = f"Is the following text offensive? return only true or false no extra word \"{item['Text']}\" make sure to return true or false only."
         response = client.chat.completions.create(
             model="gpt-3.5-turbo",  # Updated to the latest model
             messages=[{"role": "system", "content": "You should return True or False"}, {"role": "user", "content": prompt}],
         )
-        sleep(20)
-        print(f"sleeped after {prompt}")
+        
         # Extracting the last message (model's response)
         is_offensive = response.choices[0].message.content.lower()
         print('offence ', is_offensive)
