@@ -9,8 +9,8 @@ client = OpenAI(api_key="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")  
 def main():
     username = input("Enter username ")
     num = int(input("Enter the required number of tweets or -1 for all tweets: "))
-    scaper = Nitter(log_level=1, skip_instance_check=True)
-    unfilteredData = scaper.get_tweets(username, mode='user', number=num, instance="https://nitter.moomoo.me")
+    scaper = Nitter(log_level=1, skip_instance_check=False)
+    unfilteredData = scaper.get_tweets(username, mode='user', number=num)
     filtered_data = [
             {'link': tweet['link'], 'text': tweet['text'], 'date': tweet['date']}
             for tweet in unfilteredData['tweets']
