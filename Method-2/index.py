@@ -17,8 +17,8 @@ def main():
     ]
 
 
-    offensive_data = check_offensiveness(filtered_data)
-    make_csv(username, offensive_data)
+    # offensive_data = check_offensiveness(filtered_data)
+    # make_csv(username, offensive_data)
 
 def check_offensiveness(data):
     for item in data:

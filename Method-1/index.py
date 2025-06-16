@@ -13,22 +13,22 @@ def main():
     log.warning("Loading configurations...")
     client = OpenAI(api_key=conf["apiKey"])
     driver = open_driver(conf["headless"], conf["userAgent"])
-    driver.get("https://twitter.com/")
+    driver.get("https://x.com/")
     set_token(driver, conf["token"])
-    driver.get("https://twitter.com/")
+    driver.get("https://x.com/")
 
     log.warning("Starting...")
     username = input("Enter username ")
     num = int(input("Enter the required number of tweets or -1 for all tweets: "))
-    url = f'https://twitter.com/{username}/with_replies'
+    url = f'https://x.com/{username}/with_replies'
     data = profile_search(driver, username, num, url)
     print(data)
     print('Data Scrapping Done Offensive check.....')
-    offensiveCheckData = check_offensiveness(data, client)
-    print('results ',offensiveCheckData)
+    # offensiveCheckData = check_offensiveness(data, client)
+    # print('results ',offensiveCheckData)
     
     log.warning("Saving...")
-    Excel(username, offensiveCheckData, conf["output_form"])
+    # Excel(username, offensiveCheckData, conf["output_form"])
 
 
 def profile_search(
@@ -49,7 +49,7 @@ def profile_search(
             try:
                 currentUrl = tweet.get_url()
                 text = tweet.get_text()
-                if currentUrl.startswith(f'https://twitter.com/{username}') and text:
+                if currentUrl.startswith(f'https://x.com/{username}') and text:
                     data = {
                         "URL": url,
                         "Date": tweet.get_date(),
